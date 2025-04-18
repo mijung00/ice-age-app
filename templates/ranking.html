@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  <!-- ✅ 차트 라이브러리 추가 -->
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        h1 { color: #333; }
+        table { width: 50%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #aaa; padding: 10px; text-align: center; }
+        th { background-color: #f0f0f0; }
+        canvas { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <!-- ✅ 표 (기존 데이터) -->
+    <table>
+        <tr>
+            <th>순위</th>
+            <th>종목명</th>
+            <th>수익률</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item.rank }}</td>
+            <td>{{ item.symbol }}</td>
+            <td>{{ item.return }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- ✅ 차트 영역 -->
+    <canvas id="myChart" width="600" height="300"></canvas>
+
+    <script>
+        const labels = {{ data | map(attribute='symbol') | list | safe }};
+        const returns = {{ data | map(attribute='return') | list | safe }};
+
+        const numericReturns = returns.map(r => parseFloat(r.replace('%', '')));
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '수익률 (%)',
+                    data: numericReturns,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '% 수익률'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

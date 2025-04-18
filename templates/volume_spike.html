@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>거래량 치솟음</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .highlight {
+      animation: blink 1s ease-in-out infinite alternate;
+    }
+    @keyframes blink {
+      from { background-color: #fef9c3; }
+      to { background-color: #ffffff; }
+    }
+    .transition-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 p-8">
+  <h1 class="text-2xl font-bold mb-4">🔥 거래량 치솟음</h1>
+  <ul id="stock-list" class="space-y-2">
+    {% for item in data %}
+      <li class="stock-item transition-card hover:scale-105 p-4 bg-white rounded shadow-md hover:shadow-lg" data-symbol="{{ item['종목명'] }}">
+        {{ item['종목명'] }} - 거래량: {{ item.get('거래량', '') }}주
+      </li>
+    {% endfor %}
+  </ul>
+  <script>
+    const items = document.querySelectorAll(".stock-item");
+    const previous = JSON.parse(localStorage.getItem("prevVolume") || "[]");
+    const current = Array.from(items).map(item => item.dataset.symbol);
+
+    current.forEach((symbol, idx) => {
+      const prevIdx = previous.indexOf(symbol);
+      if (prevIdx !== -1 && prevIdx > idx) {
+        items[idx].classList.add("highlight");
+        items[idx].innerHTML += " <span class='text-red-500 font-semibold'>📈 NEW</span>";
+      }
+    });
+
+    localStorage.setItem("prevVolume", JSON.stringify(current));
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  </script>
+</body>
+</html>

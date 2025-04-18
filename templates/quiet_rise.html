@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>고요한 수급 속 단독 상승</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    setInterval(() => {
+      window.location.reload();
+    }, 5000);
+  </script>
+</head>
+<body class="bg-gray-100 p-8">
+  <h1 class="text-2xl font-bold mb-4">🔍 고요한 수급 속 단독 상승</h1>
+  {% if data %}
+    <ul class="space-y-2">
+      {% for item in data %}
+        <li class="p-4 bg-white rounded shadow">{{ item['종목명'] }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="text-gray-500">해당하는 종목 없음 🙇‍♀️</p>
+  {% endif %}
+</body>
+</html>

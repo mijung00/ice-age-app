@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ice Age Filters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gray-100 p-8">
+  <h1 class="text-3xl font-bold mb-6">📊 실시간 조건 기반 콘텐츠</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- 카드 1 -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">⏱ 급등중 필터</h2>
+      <p class="text-gray-600">현재 상승률이 높은 종목들을 실시간으로 보여줘요</p>
+      <a href="/condition/sprinter" class="inline-block mt-4 text-blue-600 font-semibold">보러가기 →</a>
+    </div>
+
+    <!-- 카드 2 -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">🔥 거래량 치솟음</h2>
+      <p class="text-gray-600">전일 대비 거래량이 급등한 종목들을 모아볼 수 있어요</p>
+      <a href="/condition/volume_spike" class="inline-block mt-4 text-blue-600 font-semibold">보러가기 →</a>
+    </div>
+
+    <!-- 카드 3 -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">💼 기관이 움직인다</h2>
+      <p class="text-gray-600">기관이 3일 이상 순매수한 종목들을 보여드려요</p>
+      <a href="/condition/institution_buy" class="inline-block mt-4 text-blue-600 font-semibold">보러가기 →</a>
+    </div>
+
+    <!-- 카드 4 -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">🔍 고요한 수급 속 단독 상승</h2>
+      <p class="text-gray-600">외인/기관 모두 매도 중인데도 상승하는 종목이에요</p>
+      <a href="/condition/quiet_rise" class="inline-block mt-4 text-blue-600 font-semibold">보러가기 →</a>
+    </div>
+
+    <!-- 카드 5 -->
+    <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">🧊 고요 속 꾸준한 우상향</h2>
+      <p class="text-gray-600">최근 1개월간 큰 출렁임 없이 우상향 중인 종목이에요</p>
+      <a href="/condition/steady_up" class="inline-block mt-4 text-blue-600 font-semibold">보러가기 →</a>
+    </div>
+  </div>
+</body>
+</html>
